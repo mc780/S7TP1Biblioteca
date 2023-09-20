@@ -3,7 +3,7 @@
 
 // See https://aka.ms/new-console-template for more information
 
-namespace Colecciones
+namespace proyectoSemana7_biblioteca
 {
     class Program
     {
