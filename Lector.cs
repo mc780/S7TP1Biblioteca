@@ -32,9 +32,26 @@ namespace Colecciones
           {
               return librosRetirados;
           }
-         
-    }
 
+        public void agregarLibroARetirados(Libro libroRetirado)
+        {
+            librosRetirados.Add(libroRetirado);
+        }
+
+        public void eliminarLibro(Libro libroRetirado)
+        {
+            librosRetirados.Remove(libroRetirado);
+        }
+        
+        public void listarLibros()
+        {
+            foreach (Libro libroRetirado in librosRetirados)
+            {
+                Console.WriteLine(libroRetirado);
+            }
+        }
+                
+    }
 
 
 
