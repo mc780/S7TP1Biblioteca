@@ -105,5 +105,54 @@ namespace Colecciones
                 resultadoAlta = true;
             }
             return resultadoAlta;
-}
+        }
+
+
+        public void prestarLibro(string titulo, int dni)
+        {
+            string resultadoPrestamo;
+        
+            // Verificar si libro existe.
+            Libro libroAPrestar = buscarLibro(titulo);
+        
+            // Verificar si lector existe.
+            Lector lectorSolicitante = buscarLector(dni);
+        
+            
+            // El libro no se encuentra dentro de la colección de libros en la biblioteca.
+            if (libroAPrestar == null)
+            {
+                Console.WriteLine("LIBRO INEXISTENTE");
+            }
+            // El lector no es se encuentra registrado dentro de la colección de lectores en la biblioteca.
+            else if (lectorSolicitante == null)
+            {
+                Console.WriteLine("LECTOR INEXISTENTE");
+            }
+            // El lector ya posee tres libros en préstamo.
+            else if (lectorSolicitante != null && lectorSolicitante.getLibrosRetirados().Count > 3)
+            {
+                Console.WriteLine("TOPE DE PRESTAMO ALCAZADO");
+            }
+            else
+            {
+                /* Se busca la posición de la lista de lectores en donde se halla
+                   el lector que solicita el libro.*/
+                int posicionLector = lectoresRegistrados.IndexOf(lectorSolicitante);
+        
+                /* Se agrega el libro a la lista de libros retirados de esa instancia de 
+                   la clase Lector especifica mediante el método correspondiente.*/
+                lectoresRegistrados[posicionLector].agregarLibroARetirados(libroAPrestar);
+        
+                /* Se elimina el libro del listado de libros en tenencia de la Biblioteca.*/
+                eliminarLibro(titulo);
+        
+                /*Se comunica el éxito en la generación del préstamo*/
+                Console.Write("PRESTAMO EXITOSO");
+            }
+
+        }
+
+    }
+
 }
