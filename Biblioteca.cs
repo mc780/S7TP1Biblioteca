@@ -9,12 +9,14 @@ namespace Colecciones
     class Biblioteca
     {
         private List<Libro> libros;
-
+        private List<Lector> lectoresRegistrados;
+        
         public Biblioteca()
         {
             this.libros = new List<Libro>();
+            this.lectoresRegistrados = new List<Lector>();
         }
-
+        
         private Libro buscarLibro(string titulo)
         {
             Libro libroBuscado = null;
@@ -29,7 +31,7 @@ namespace Colecciones
             }
             return libroBuscado; // Agregar esta línea para manejar el caso en que no se encuentra el libro
         }
-
+        
         public bool agregarLibro(string titulo, string autor, string editorial)
         {
             bool resultado = false;
@@ -42,8 +44,8 @@ namespace Colecciones
                 resultado = true;
             }
             return resultado;
+        
         }
-
         public void listarLibros()
         {
             foreach (Libro libro in libros)
@@ -51,7 +53,7 @@ namespace Colecciones
                 Console.WriteLine(libro);
             }
         }
-
+        
         public bool eliminarLibro(string titulo)
         {
             bool resultado = false;
@@ -65,57 +67,43 @@ namespace Colecciones
             return resultado;
         }
         
-/* Desarrollar el método prestarLibro de la clase Biblioteca la cual recibe por parámetro el título de un libro y el dni del lector que lo solicita 
-    y retorna un string con los posibles valores:
-"PRESTAMO EXITOSO" (en este caso el libro se le pudo prestar al lector, se lo quitó de la lista de libros que dispone la biblioteca 
-y se lo adjudicó al lector).
-"LIBRO INEXISTENTE" (cuando el libro no se encuentra dentro de la colección de libros en la biblioteca)
-"TOPE DE PRESTAMO ALCAZADO" (cuando el lector ya posee tres libros en préstamo)
-"LECTOR INEXISTENTE" (cuando el lector no es se encuentra registrado dentro de la colección de lectores en la biblioteca)
-    */
-        public prestarLibro(string titulo, int dni)
+        
+        
+        /* Consigna Nº2 - Método 'altaLector'. Se le pasan los parámetros necesarios y realiza
+           el alta a un lector sólo si este no se encuentra dentro de la lista de lectores
+           previamente registrados, para buscarlo se crea previamente el método 'buscarLector'
+           que busca al lector por su DNI, considerando que este es un identificador único
+           para cualquuier persona.
+           Mediante un valor de tipo Bool informa si el alta fue exitosa (true) o no (false)."*/
+        private Lector buscarLector(int dniLector)
         {
-
-            if (titulo != null && dni != null)
+            Lector lectorBuscado = null;
+            int i = 0;
+            while (i < lectoresRegistrados.Count && !lectoresRegistrados[i].getDniLector().Equals(dniLector))
             {
-                //libro existente
-                Console.WriteLine("LIBRO EXISTENTE");
-                Console.WriteLine("LECTOR EXISTENTE");
-                if (prestamo < 3)
-                {
-                    //prestamo exitoso. en este caso el libro se le pudo prestar al lector, se lo quitó de la lista de libros que dispone la biblioteca y se lo adjudicó al lector
-                    prestamo += 1;
-                    Console.WriteLine("prestamo exitoso.");
-                }
-                else
-                {
-                    //tope de prestamo            
-                }
+                i++;
             }
-            else
+            if (i != lectoresRegistrados.Count)
             {
-                Console.WriteLine("LIBRO INEXISTENTE");
-                Console.WriteLine("LECTOR INEXISTENTE");
+                lectorBuscado = lectoresRegistrados[i];
             }
-
-
+            return lectorBuscado; // Agregar esta línea para manejar el caso en que no se encuentra el libro
         }
-    /*Consigna Nº 2 : Desarrollar el método altaLector que pasándole los parámetros necesarios de el alta a un lector dentro de la lista de lectores si es que no se encontraba previamente registrado.
-
-                Se propone hacer un ejercicio similar al propuesto por la teoría y crear dos métodos: el altaLector, requerido, y uno previo buscarLector que busque, mediante el ingreso por parámetro del DNI del lector a dar de alta, si el mismo se halla requerido o no (se busca solo por DNI ya que a efectos practicos es un identificador único, es decir, puede haber dos personas con el mismo nombre y apellido pero no con el mismo DNI).
-
-                Previo a la codificación de los métodos, apliqué las siguientes modificaciones:
-
-                Sobre la clase BIBLIOTECA:
-                Agregué el arreglo List de lectores como variable y lo inicié en el constructor.*/
-    
-        private List<Lector> lectoresRegistrados;
-
-        public Biblioteca()
+        
+        public bool AltaLector(string nomNuevLector, int dniNuevLector)
         {
-            this.libros = new List<Libro>();
-            this.lectoresRegistrados = new List<Lector>();
-        }
-
-        }
+            bool resultadoAlta = false;
+        
+            Lector nuevoLector;
+        
+            nuevoLector = buscarLector(dniNuevLector);
+        
+            if (nuevoLector == null)
+            {
+                nuevoLector = new Lector(nomNuevLector, dniNuevLector);
+                lectoresRegistrados.Add(nuevoLector);
+                resultadoAlta = true;
+            }
+            return resultadoAlta;
+}
 }
