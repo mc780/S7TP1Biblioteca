@@ -10,6 +10,26 @@ namespace proyectoSemana7_biblioteca
         {
             Biblioteca biblioteca = new Biblioteca();
 
+            // Se precargan algunos libros y lectores por código para probar los métodos.
+
+            biblioteca.agregarLibro("Cuentos de la Selva", "Horacio Quiroga", "Cooperativa editorial Buenos Aires");
+            biblioteca.agregarLibro("El Quijote", "Miguel de Cervantes", "Alfaguara");
+            biblioteca.agregarLibro("La Divina Comedia", "Dante Alighieri", "Planeta");
+            biblioteca.agregarLibro("Hamlet", "William Shakespeare", "Alianza Editorial");
+            biblioteca.agregarLibro("Tuya", "Claudia Piñeiro", "Alfaguara");
+            biblioteca.agregarLibro("Angeles y Demonios", "Dan Browin", "NiIdea");
+            biblioteca.agregarLibro("Una misma noche", "Leopoldo Brizuela", "Alfaguara");
+            biblioteca.agregarLibro("Cadaver exquisito", "Agustina Bazterrica", "Alfaguara");
+            biblioteca.AltaLector("Marcos", 11111111);
+            biblioteca.AltaLector("Sandra", 22222222);
+            biblioteca.AltaLector("Maria", 33333333);
+            biblioteca.AltaLector("Roberto", 44444444);
+            biblioteca.AltaLector("Madelaine", 55555555);
+            biblioteca.AltaLector("Martin", 66666666);
+            biblioteca.AltaLector("Mariano", 77777777);
+            biblioteca.AltaLector("Lorena", 88888888);
+            biblioteca.AltaLector("Pablo", 99999999);
+
 
             Console.WriteLine("¿Qué operación que desea realizar?");
             Console.WriteLine(" ");
