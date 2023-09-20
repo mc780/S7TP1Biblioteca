@@ -1,11 +1,10 @@
-﻿//LO HICE EN NET CORE 6
-//TODO ESTO VA DENTRO DEL NAMESPACE
-
-// See https://aka.ms/new-console-template for more information
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace proyectoSemana7_biblioteca
 {
-    class Program
+    class Test
     {
         public void Main(string[] args)
         {
