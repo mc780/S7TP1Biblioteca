@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Colecciones
+namespace proyectoSemana7_biblioteca
 {
     class Biblioteca
     {
@@ -29,7 +29,7 @@ namespace Colecciones
             {
                 libroBuscado = libros[i];
             }
-            return libroBuscado; // Agregar esta línea para manejar el caso en que no se encuentra el libro
+            return libroBuscado;
         }
         
         public bool agregarLibro(string titulo, string autor, string editorial)
