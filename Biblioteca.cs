@@ -93,16 +93,22 @@ namespace proyectoSemana7_biblioteca
         public bool AltaLector(string nomNuevLector, int dniNuevLector)
         {
             bool resultadoAlta = false;
-        
-            Lector nuevoLector;
-        
-            nuevoLector = buscarLector(dniNuevLector);
-        
-            if (nuevoLector == null)
+
+            // Validar DNI ingresado.
+            string dniValido = dniNuevLector.ToString();
+            int largoDni = dniValido.Length;
+            
+            if (largoDni>=7 || largoDni <= 8)
             {
-                nuevoLector = new Lector(nomNuevLector, dniNuevLector);
-                lectoresRegistrados.Add(nuevoLector);
-                resultadoAlta = true;
+                Lector nuevoLector;
+                nuevoLector = buscarLector(dniNuevLector);
+            
+                if (nuevoLector == null)
+                {
+                    nuevoLector = new Lector(nomNuevLector, dniNuevLector);
+                    lectoresRegistrados.Add(nuevoLector);
+                    resultadoAlta = true;
+                }
             }
             return resultadoAlta;
         }
