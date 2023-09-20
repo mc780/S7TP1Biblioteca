@@ -98,7 +98,7 @@ namespace proyectoSemana7_biblioteca
             string dniValido = dniNuevLector.ToString();
             int largoDni = dniValido.Length;
             
-            if (largoDni>=7 || largoDni <= 8)
+            if (largoDni>=7 && largoDni <= 8)
             {
                 Lector nuevoLector;
                 nuevoLector = buscarLector(dniNuevLector);
