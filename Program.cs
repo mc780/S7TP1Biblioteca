@@ -4,50 +4,101 @@ using System.Runtime.CompilerServices;
 
 namespace proyectoSemana7_biblioteca
 {
-    class Test
+    internal class Test
     {
-        public void Main(string[] args)
+        static void Main(string[] args)
         {
             Biblioteca biblioteca = new Biblioteca();
 
-            biblioteca.agregarLibro("El Quijote", "Miguel de Cervantes", "Alfaguara");
-            biblioteca.agregarLibro("La Divina Comedia", "Dante Alighieri", "Planeta");
-            biblioteca.agregarLibro("Hamlet", "William Shakespeare", "Alianza Editorial");
 
-            cargarLibros(10);
-            cargarLibros(2);
-            biblioteca.listarLibros();
+            Console.WriteLine("¿Qué operación que desea realizar?");
+            Console.WriteLine(" ");
+            Console.WriteLine("1.-  Ingresar Libros");
+            Console.WriteLine("2.-  Dar de alta un Lector");
+            Console.WriteLine("3.-  Generar un préstamo");
 
-            //biblioteca.eliminarLibro("libro5");
-            biblioteca.listarLibros();
+            char letraAccion = char.Parse(Console.ReadLine().ToLower());
 
-            Lector lector = new Lector();
-            lector.AltaLector("marcos", 33333333);
-            lector.AltaLector("sandra", 44444444);
-            lector.AltaLector("maria", 55555555);
-            lector.AltaLector("roberto", 66666666);
-            lector.AltaLector("marcos", 33333333);
-
-            biblioteca.prestarLibro("El Quijote", 33333333);
-
-            void cargarLibros(int cantidad)
+            switch (letraAccion)
             {
-                bool pude;
-                for (int i = 1; i <= cantidad; i++)
-                {
-                    pude = biblioteca.agregarLibro("Libro" + i, "Autor" + i, "Editorial" + i);
-                    if (pude)
+                case '1':
+                    Console.WriteLine("Iniciará la carga de libros al inventario");
+                    Console.WriteLine("Ingrese \"FIN\" como TITULO para terminar");
+                    string tituloAAgregar;
+                    do
                     {
-                        Console.WriteLine("libro" + i + " agregado correctamente");
+                        Console.Write("Ingrese el TITULO del libro: ");
+                        tituloAAgregar = Console.ReadLine().ToUpper();
+                        if (tituloAAgregar != "FIN")
+                        {
+                            Console.Write("Ingrese el AUTOR del libro: ");
+                            string autorAAgregar = Console.ReadLine();
+                            Console.Write("Ingrese la EDITORIAL del libro: ");
+                            string editorialAAgregar = Console.ReadLine();
 
-                    }
-                    else
+                            bool libroAgregado = biblioteca.agregarLibro(tituloAAgregar, autorAAgregar, editorialAAgregar);
+                            if (libroAgregado == true)
+                            {
+                                Console.WriteLine($"El libro {tituloAAgregar} del autor {autorAAgregar} impreso por la editorial {editorialAAgregar} se agregó CORRECTAMENTE");
+                            }
+                            else
+                            {
+                                Console.WriteLine($" NO SE PUDO AGREGAR al libro {tituloAAgregar} del autor {autorAAgregar} impreso por la editorial {editorialAAgregar}");
+                            }
+                        }
+                    } while (tituloAAgregar != "FIN");
+                    break;
+
+
+                case '2':
+                    Console.WriteLine("Iniciará el alta de nuevos lectores");
+                    Console.WriteLine("Ingrese \"FIN\" como NOMBRE para terminar");
+                    string nombreAAgregar;
+                    do
                     {
-                        Console.WriteLine("libro" + i + " Ya existe en la biblioteca");
-                    }
-                }
+                        Console.Write("Ingrese los NOMBRE/s y APELLIDO/s del nuevo lector: ");
+                        nombreAAgregar = Console.ReadLine().ToUpper();
+                        if (nombreAAgregar != "FIN")
+                        {
+                            Console.Write("Ingrese el DNI del nuevo lector: ");
+                            int dniAAgregar = int.Parse(Console.ReadLine());
+
+                            bool lectorCargado = biblioteca.AltaLector(nombreAAgregar, dniAAgregar);
+                            if (lectorCargado == true)
+                            {
+                                Console.WriteLine($"El lector {nombreAAgregar} con DNI {dniAAgregar} fue dado de alta CORRECTAMENTE");
+                            }
+                            else
+                            {
+                                Console.WriteLine($" NO SE PUDO DAR DE ALTA al lector {nombreAAgregar} cuyo DNI es {dniAAgregar}.");
+                            }
+                        }
+                    } while (nombreAAgregar != "FIN");
+                    break;
+
+
+                case '3':
+                    Console.WriteLine("Generará nuevos préstamos.");
+                    Console.WriteLine("Ingrese \"FIN\" como TITULO para terminar");
+                    string tituloAPrestar;
+                    do
+                    {
+                        Console.Write("Ingrese el TITULO del libro a prestar: ");
+                        tituloAPrestar = Console.ReadLine().ToUpper();
+                        if (tituloAPrestar != "FIN")
+                        {
+                            Console.Write("Ingrese el DNI del lector que solicita el libro: ");
+                            int dniSolicitante = int.Parse(Console.ReadLine());
+
+                            biblioteca.prestarLibro(tituloAPrestar, dniSolicitante);
+                            
+                        }
+                    } while (tituloAPrestar != "FIN");
+                    break;
+
+
             }
-        }         
+        }
     }
 }
 
