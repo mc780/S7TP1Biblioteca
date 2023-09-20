@@ -38,7 +38,7 @@ namespace Colecciones
             librosRetirados.Add(libroRetirado);
         }
 
-        public void eliminarLibro(Libro libroRetirado)
+        public void eliminarLibroDeRetirados(Libro libroRetirado)
         {
             librosRetirados.Remove(libroRetirado);
         }
