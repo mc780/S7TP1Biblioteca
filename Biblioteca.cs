@@ -148,7 +148,7 @@ namespace proyectoSemana7_biblioteca
                 eliminarLibro(titulo);
         
                 /*Se comunica el éxito en la generación del préstamo*/
-                Console.Write("PRESTAMO EXITOSO");
+                Console.WriteLine("PRESTAMO EXITOSO");
             }
 
         }
