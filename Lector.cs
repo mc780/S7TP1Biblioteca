@@ -9,10 +9,9 @@ namespace proyectoSemana7_biblioteca
     internal class Lector 
     {
           private List<Libro> librosRetirados;
-          private string nombreLector;
-          private int dni;
+          private string nombreLector, dni;
           
-          public Lector(string nombreLector, int dni)
+          public Lector(string nombreLector, string dni)
           {
               this.nombreLector = nombreLector;
               this.dni=dni;
