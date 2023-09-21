@@ -37,11 +37,22 @@ namespace proyectoSemana7_biblioteca
             Console.WriteLine("2.-  Dar de alta un Lector");
             Console.WriteLine("3.-  Generar un préstamo");
 
-            char letraAccion = char.Parse(Console.ReadLine().ToLower());
+            string nroAccion = Console.ReadLine();
+
+            while (nroAccion.Length != 1)
+            {
+                Console.WriteLine("No ha ingresado una opción correcta.");
+                Console.WriteLine("Seleccione la operación que desea realizar");
+                Console.WriteLine(" ");
+                Console.WriteLine("1.-  Ingresar Libros");
+                Console.WriteLine("2.-  Dar de alta un Lector");
+                Console.WriteLine("3.-  Generar un préstamo");
+                nroAccion = Console.ReadLine();
+            }    
 
             switch (letraAccion)
             {
-                case '1':
+                case "1":
                     Console.WriteLine("Iniciará la carga de libros al inventario");
                     Console.WriteLine("Ingrese \"FIN\" como TITULO para terminar");
                     string tituloAAgregar;
@@ -70,7 +81,7 @@ namespace proyectoSemana7_biblioteca
                     break;
 
 
-                case '2':
+                case "2":
                     Console.WriteLine("Iniciará el alta de nuevos lectores");
                     Console.WriteLine("Ingrese \"FIN\" como NOMBRE para terminar");
                     string nombreAAgregar;
@@ -97,7 +108,7 @@ namespace proyectoSemana7_biblioteca
                     break;
 
 
-                case '3':
+                case "3":
                     Console.WriteLine("Generará nuevos préstamos.");
                     Console.WriteLine("Ingrese \"FIN\" como TITULO para terminar");
                     string tituloAPrestar;
