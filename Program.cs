@@ -18,16 +18,19 @@ namespace proyectoSemana7_biblioteca
                 pude = biblioteca.agregarLibro("Libro" + i, "Autor" + i, "Editorial" + i);
                 if (pude)
                 {
-                    Console.WriteLine("libro" + i + " agragado correctamente.");
+                    Console.WriteLine("Libro" + i + " agragado correctamente.");
                 }
                 else
                 {
-                    Console.WriteLine("libro" + i + " Ya existe en la biblioteca.");
+                    Console.WriteLine("Libro" + i + " Ya existe en la biblioteca.");
                 }
             }
+            Console.WriteLine(" ");
             biblioteca.listarLibros();
+            Console.WriteLine(" ");
             biblioteca.eliminarLibro("Libro5");
             biblioteca.listarLibros();
+            Console.WriteLine(" ");
     
     
     
@@ -54,6 +57,19 @@ namespace proyectoSemana7_biblioteca
             biblioteca.AltaLector("Mariano", 77777777);
             biblioteca.AltaLector("Lorena", 88888888);
             biblioteca.AltaLector("Pablo", 99999999);
+
+            biblioteca.prestarLibro("Cuentos de la Selva", "11111111");
+            Console.WriteLine(" ");
+            biblioteca.prestarLibro("El Quijote", "11111111");
+            Console.WriteLine(" ");
+            biblioteca.prestarLibro("La Divina Comedia", "11111111");
+            Console.WriteLine(" ");
+            biblioteca.prestarLibro("El eternauta", "33333333");
+            Console.WriteLine(" ");
+            biblioteca.prestarLibro("Hamlet", "10101010");
+            Console.WriteLine(" ");
+            biblioteca.prestarLibro("Tuya", "11111111");
+            Console.WriteLine(" ");
     
             string nroAccion;
             do
@@ -104,13 +120,13 @@ namespace proyectoSemana7_biblioteca
                                     string autorAAgregar = Console.ReadLine();
                                     Console.Write("Ingrese la EDITORIAL del libro: ");
                                     string editorialAAgregar = Console.ReadLine();
-    
-                                    if (!string.IsNullOrWhiteSpace(tituloAAgregar) && !string.IsNullOrWhiteSpace(autorAAgregar) && !string.IsNullOrWhiteSpace(editorialAAgregar))
+                        
+                                    if (!string.IsNullOrWhiteSpace(tituloAAgregar.ToUpper()) && !string.IsNullOrWhiteSpace(autorAAgregar.ToUpper()) && !string.IsNullOrWhiteSpace(editorialAAgregar.ToUpper()))
                                     {
-                                        libroAgregado = biblioteca.agregarLibro(tituloAAgregar, autorAAgregar, editorialAAgregar);
+                                        libroAgregado = biblioteca.agregarLibro(tituloAAgregar.ToUpper(), autorAAgregar.ToUpper(), editorialAAgregar.ToUpper());
                                     }
                                     
-                                    if (libroAgregado == true)
+                                    if (libroAgregado)
                                     {
                                         Console.WriteLine($"El libro {tituloAAgregar} del autor {autorAAgregar} impreso por la editorial {editorialAAgregar} se agregó CORRECTAMENTE");
                                     }
@@ -121,8 +137,8 @@ namespace proyectoSemana7_biblioteca
                                 }
                             } while (tituloAAgregar != "FIN");
                             break;
-    
-    
+                    
+                    
                         case "2":
                             bool lectorCargado = false;
                             Console.WriteLine("Iniciará el alta de nuevos lectores");
@@ -135,27 +151,26 @@ namespace proyectoSemana7_biblioteca
                                 if (nombreAAgregar != "FIN")
                                 {
                                     Console.Write("Ingrese el DNI del nuevo lector: ");
-                                    string dniIngresado = Console.ReadLine();
+                                    string dniAAgregar = Console.ReadLine();
                                  
-                                    if (!string.IsNullOrWhiteSpace(nombreAAgregar) && !string.IsNullOrWhiteSpace(dniIngresado))
+                                    if (!string.IsNullOrWhiteSpace(nombreAAgregar) && !string.IsNullOrWhiteSpace(dniAAgregar))
                                     {
-                                        int dniAAgregar = int.Parse(dniIngresado);
                                         lectorCargado = biblioteca.AltaLector(nombreAAgregar, dniAAgregar);
                                     }
-    
+                        
                                     if (lectorCargado == true)
                                     {
-                                        Console.WriteLine($"El lector {nombreAAgregar} con DNI {dniIngresado} fue dado de alta CORRECTAMENTE");
+                                        Console.WriteLine($"El lector {nombreAAgregar} con DNI {dniAAgregar} fue dado de alta CORRECTAMENTE");
                                     }
                                     else
                                     {
-                                        Console.WriteLine($" NO SE PUDO DAR DE ALTA al lector {nombreAAgregar} cuyo DNI es {dniIngresado}.");
+                                        Console.WriteLine($" NO SE PUDO DAR DE ALTA al lector {nombreAAgregar} cuyo DNI es {dniAAgregar}.");
                                     }
                                 }
                             } while (nombreAAgregar != "FIN");
                             break;
-    
-    
+                        
+                        
                         case "3":
                             Console.WriteLine("Generará nuevos préstamos.");
                             Console.WriteLine("Ingrese \"FIN\" como TITULO para terminar");
@@ -167,21 +182,21 @@ namespace proyectoSemana7_biblioteca
                                 if (tituloAPrestar != "FIN")
                                 {
                                     Console.Write("Ingrese el DNI del lector que solicita el libro: ");
-                                    int dniSolicitante = int.Parse(Console.ReadLine());
-    
+                                    string dniSolicitante = Console.ReadLine();
+                        
                                     biblioteca.prestarLibro(tituloAPrestar, dniSolicitante);
-    
+                        
                                 }
                             } while (tituloAPrestar != "FIN");
                             break;
-    
-    
+                        
+                        
                         case "4":
                             Console.WriteLine("Lista de LIBROS en el inventario de la biblioteca: ");
                             biblioteca.listarLibros();
                             break;
-    
-    
+                        
+                        
                         case "5":
                             Console.WriteLine("Lista de LECTORES asociados a la biblioteca: ");
                             biblioteca.listarLectoresAsociados();
