@@ -116,9 +116,7 @@ namespace proyectoSemana7_biblioteca
 
         public void prestarLibro(string titulo, int dni)
         {
-            string resultadoPrestamo;
-        
-            // Verificar si libro existe.
+             // Verificar si libro existe.
             Libro libroAPrestar = buscarLibro(titulo);
         
             // Verificar si lector existe.
