@@ -75,7 +75,7 @@ namespace proyectoSemana7_biblioteca
            que busca al lector por su DNI, considerando que este es un identificador único
            para cualquuier persona.
            Mediante un valor de tipo Bool informa si el alta fue exitosa (true) o no (false)."*/
-        private Lector buscarLector(int dniLector)
+        private Lector buscarLector(string dniLector)
         {
             Lector lectorBuscado = null;
             int i = 0;
@@ -90,15 +90,11 @@ namespace proyectoSemana7_biblioteca
             return lectorBuscado; // Agregar esta línea para manejar el caso en que no se encuentra el libro
         }
         
-        public bool AltaLector(string nomNuevLector, int dniNuevLector)
+        public bool AltaLector(string nomNuevLector, string dniNuevLector)
         {
             bool resultadoAlta = false;
-
-            // Validar DNI ingresado.
-            string dniValido = dniNuevLector.ToString();
-            int largoDni = dniValido.Length;
             
-            if (largoDni>=7 && largoDni <= 8)
+            if (dniNuevLector.Length>=7 && dniNuevLector.Length <= 8)
             {
                 Lector nuevoLector;
                 nuevoLector = buscarLector(dniNuevLector);
@@ -114,7 +110,7 @@ namespace proyectoSemana7_biblioteca
         }
 
 
-        public void prestarLibro(string titulo, int dni)
+        public void prestarLibro(string titulo, string dni)
         {
              // Verificar si libro existe.
             Libro libroAPrestar = buscarLibro(titulo);
@@ -134,7 +130,7 @@ namespace proyectoSemana7_biblioteca
                 Console.WriteLine("LECTOR INEXISTENTE");
             }
             // El lector ya posee tres libros en préstamo.
-            else if (lectorSolicitante != null && lectorSolicitante.getLibrosRetirados().Count > 3)
+            else if (lectorSolicitante != null && lectorSolicitante.getLibrosRetirados().Count >= 3)
             {
                 Console.WriteLine("TOPE DE PRESTAMO ALCAZADO");
             }
