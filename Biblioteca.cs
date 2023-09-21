@@ -36,10 +36,10 @@ namespace proyectoSemana7_biblioteca
         {
             bool resultado = false;
             Libro libro;
-            libro = buscarLibro(titulo);
+            libro = buscarLibro(titulo.ToUpper());
             if (libro == null)
             {
-                libro = new Libro(titulo, autor, editorial);
+                libro = new Libro(titulo.ToUpper(), autor.ToUpper(), editorial.ToUpper());
                 libros.Add(libro);
                 resultado = true;
             }
@@ -58,7 +58,7 @@ namespace proyectoSemana7_biblioteca
         {
             bool resultado = false;
             Libro libro;
-            libro = buscarLibro(titulo);
+            libro = buscarLibro(titulo.ToUpper());
             if (libro != null)
             {
                 libros.Remove(libro);
@@ -79,7 +79,7 @@ namespace proyectoSemana7_biblioteca
         {
             Lector lectorBuscado = null;
             int i = 0;
-            while (i < lectoresRegistrados.Count && !lectoresRegistrados[i].getDniLector().Equals(dniLector))
+            while (i < lectoresRegistrados.Count && !lectoresRegistrados[i].getDniLector().Equals(dniLector.ToUpper()))
             {
                 i++;
             }
@@ -97,11 +97,11 @@ namespace proyectoSemana7_biblioteca
             if (dniNuevLector.Length>=7 && dniNuevLector.Length <= 8)
             {
                 Lector nuevoLector;
-                nuevoLector = buscarLector(dniNuevLector);
+                nuevoLector = buscarLector(dniNuevLector.ToUpper());
             
                 if (nuevoLector == null)
                 {
-                    nuevoLector = new Lector(nomNuevLector, dniNuevLector);
+                    nuevoLector = new Lector(nomNuevLector.ToUpper(), dniNuevLector.ToUpper());
                     lectoresRegistrados.Add(nuevoLector);
                     resultadoAlta = true;
                 }
@@ -113,10 +113,10 @@ namespace proyectoSemana7_biblioteca
         public void prestarLibro(string titulo, string dni)
         {
              // Verificar si libro existe.
-            Libro libroAPrestar = buscarLibro(titulo);
+            Libro libroAPrestar = buscarLibro(titulo.ToUpper());
         
             // Verificar si lector existe.
-            Lector lectorSolicitante = buscarLector(dni);
+            Lector lectorSolicitante = buscarLector(dni.ToUpper());
         
             
             // El libro no se encuentra dentro de la colección de libros en la biblioteca.
@@ -145,7 +145,7 @@ namespace proyectoSemana7_biblioteca
                 lectoresRegistrados[posicionLector].agregarLibroARetirados(libroAPrestar);
         
                 /* Se elimina el libro del listado de libros en tenencia de la Biblioteca.*/
-                eliminarLibro(titulo);
+                eliminarLibro(titulo.ToUpper());
         
                 /*Se comunica el éxito en la generación del préstamo*/
                 Console.WriteLine("PRESTAMO EXITOSO");
